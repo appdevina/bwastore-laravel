@@ -11,6 +11,7 @@ use App\Http\Controllers\DetailController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\DashboardController as Admin;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,14 @@ use App\Http\Controllers\HomeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// ->middleware(['auth', 'admin'])
+
+Route::prefix('admin')
+->namespace('Admin')
+->group(function() {
+    Route::get('/', [Admin::class, 'index'])->name('admin-dashboard');
+});
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories');

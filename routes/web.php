@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\DashboardController as Admin;
 use App\Http\Controllers\Admin\CategoryController as CategoryAdmin;
+use App\Http\Controllers\Admin\UserController as UserAdmin;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,7 @@ Route::prefix('admin')
 ->group(function() {
     Route::get('/', [Admin::class, 'index'])->name('admin-dashboard');
     Route::resource('category', CategoryAdmin::class);
+    Route::resource('user', UserAdmin::class);
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
